@@ -1,0 +1,32 @@
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.items-centered {
+    justify-content: center;
+}
+
+.items-aligned {
+    align-items: center;
+}
+
+.text-centered {
+    text-align: center;
+}
+
+p, h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
