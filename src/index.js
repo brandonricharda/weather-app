@@ -1,3 +1,4 @@
 const { default: displayWeatherData } = require("./displayWeatherData");
 
-displayWeatherData("Toronto");
+let data = displayWeatherData();
+data.displayData("Toronto");
