@@ -34,3 +34,28 @@ p, h2 {
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+.rounded-border {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.width-50-percent {
+    width: 50%;
+}
+
+.pt-10 {
+    padding-top: 10px;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.font-30 {
+    font-size: 100px;
+}
