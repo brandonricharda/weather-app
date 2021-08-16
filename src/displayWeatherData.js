@@ -1,10 +1,12 @@
+import selectEmoji from "./selectEmoji";
+
 const displayWeatherData = (function() {
 
     const tempDisplay = document.getElementById("temp-display");
     const feelsLikeTempDisplay = document.getElementById("feels-like-temp-display");
     const humidityDisplay = document.getElementById("humidity-display");
-    const windDisplay = document.getElementById("wind-display");
     const cityDisplay = document.getElementById("city-display");
+    const emojiDisplay = document.getElementById("emoji-display");
 
     async function getRawData(city, units) {
         try {
@@ -25,7 +27,6 @@ const displayWeatherData = (function() {
             result["feelsLike"] = rawData.main.feels_like;
             result["humidity"] = rawData.main.humidity;
             result["temperature"] = rawData.main.temp;
-            result["wind"] = rawData.wind;
             return result;
         } catch {
             // Error handling
@@ -35,13 +36,17 @@ const displayWeatherData = (function() {
     async function displayData(city, units) {
         try {
             let data = await getRequiredData(city, units);
-            tempDisplay.innerHTML = data.temperature;
-            feelsLikeTempDisplay.innerHTML = data.feelsLike;
-            humidityDisplay.innerHTML = data.humidity;
-            windDisplay.innerHTML = `${data.wind.speed} MPH`;
+            tempDisplay.innerHTML = `Temperature: ${data.temperature}°`;
+            feelsLikeTempDisplay.innerHTML = `Feels Like: ${data.feelsLike}°`;
+            humidityDisplay.innerHTML = `Humidity: ${data.humidity}%`;
             cityDisplay.innerHTML = data.city;
+            if (units == "metric") {
+                emojiDisplay.innerHTML = selectEmoji().metricEmojiSelector(data.temperature);
+            } else if (units == "imperial") {
+                // Emoji selector for imperial units
+            }
         } catch {
-
+            // Error handling
         }
     }
 
