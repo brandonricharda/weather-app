@@ -14,8 +14,13 @@ const selectEmoji = (function() {
         }
     }
 
+    const errorEmojiSelector = function() {
+        return "🧐";
+    }
+
     return {
-        metricEmojiSelector
+        metricEmojiSelector,
+        errorEmojiSelector
     }
 
 });

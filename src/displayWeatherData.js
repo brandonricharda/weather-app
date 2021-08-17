@@ -14,7 +14,7 @@ const displayWeatherData = (function() {
             let rawData = await response.json();
             return rawData;
         } catch {
-            // Error handling
+            return false;
         }
     }
 
@@ -27,23 +27,31 @@ const displayWeatherData = (function() {
             result["feelsLike"] = rawData.main.feels_like;
             result["humidity"] = rawData.main.humidity;
             result["temperature"] = rawData.main.temp;
-            return result;
+                return result;
         } catch {
-            // Error handling
+            return false;
         }
     }
 
     async function displayData(city, units) {
         try {
             let data = await getRequiredData(city, units);
-            tempDisplay.innerHTML = `Temperature: ${data.temperature}°`;
-            feelsLikeTempDisplay.innerHTML = `Feels Like: ${data.feelsLike}°`;
-            humidityDisplay.innerHTML = `Humidity: ${data.humidity}%`;
-            cityDisplay.innerHTML = data.city;
-            if (units == "metric") {
-                emojiDisplay.innerHTML = selectEmoji().metricEmojiSelector(data.temperature);
-            } else if (units == "imperial") {
-                // Emoji selector for imperial units
+            if (data != false) {
+                tempDisplay.innerHTML = `Temperature: ${data.temperature}°`;
+                feelsLikeTempDisplay.innerHTML = `Feels Like: ${data.feelsLike}°`;
+                humidityDisplay.innerHTML = `Humidity: ${data.humidity}%`;
+                cityDisplay.innerHTML = data.city;
+                if (units == "metric") {
+                    emojiDisplay.innerHTML = selectEmoji().metricEmojiSelector(data.temperature);
+                } else if (units == "imperial") {
+                    // Emoji selector for imperial units
+                }
+            } else {
+                tempDisplay.innerHTML = "N/A";
+                feelsLikeTempDisplay.innerHTML = "N/A";
+                humidityDisplay.innerHTML = "N/A";
+                cityDisplay.innerHTML = "City Not Found – Please Try Again";
+                emojiDisplay.innerHTML = selectEmoji().errorEmojiSelector();
             }
         } catch {
             // Error handling
