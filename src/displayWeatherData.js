@@ -27,7 +27,7 @@ const displayWeatherData = (function() {
             result["feelsLike"] = rawData.main.feels_like;
             result["humidity"] = rawData.main.humidity;
             result["temperature"] = rawData.main.temp;
-                return result;
+            return result;
         } catch {
             return false;
         }
@@ -36,13 +36,14 @@ const displayWeatherData = (function() {
     async function displayData(city, units) {
         try {
             let data = await getRequiredData(city, units);
+            console.log(data);
             if (data != false) {
                 tempDisplay.innerHTML = `Temperature: ${data.temperature}°`;
                 feelsLikeTempDisplay.innerHTML = `Feels Like: ${data.feelsLike}°`;
                 humidityDisplay.innerHTML = `Humidity: ${data.humidity}%`;
                 cityDisplay.innerHTML = data.city;
                 if (units == "metric") {
-                    emojiDisplay.innerHTML = selectEmoji().metricEmojiSelector(data.temperature);
+                    emojiDisplay.innerHTML = selectEmoji().metricEmojiSelector(data.temperature, units);
                 } else if (units == "imperial") {
                     // Emoji selector for imperial units
                 }
