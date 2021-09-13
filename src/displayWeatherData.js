@@ -10,7 +10,7 @@ const displayWeatherData = (function() {
 
     async function getRawData(city, units) {
         try {
-            let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?units=${units}&q=${city}&APPID=b5ac84ceab190ef9f24d089fe59d6d10`);
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=${units}&q=${city}&APPID=b5ac84ceab190ef9f24d089fe59d6d10`);
             let rawData = await response.json();
             return rawData;
         } catch {
